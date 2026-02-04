@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Paz - Analytics Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2540;
+            --accent: #00D4FF;
+            --secondary: #1E3A5F;
+            --text-dark: #1a1a1a;
+            --text-light: #6B7280;
+            --bg-light: #F8FAFC;
+            --white: #ffffff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Work Sans', sans-serif; color: var(--text-dark); line-height: 1.6; overflow-x: hidden; background: var(--white); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1.5rem 2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.05); animation: slideDown 0.6s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.95rem; transition: color 0.3s ease; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 150%; background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%); animation: float 20s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 33% { transform: translate(30px, -30px) rotate(3deg); } 66% { transform: translate(-20px, 20px) rotate(-3deg); } }
+        .hero .container { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+        .hero-content { max-width: 800px; animation: fadeInUp 1s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-label { display: inline-block; padding: 0.5rem 1.2rem; background: var(--primary); color: var(--white); font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1.5rem; border-radius: 30px; animation: fadeInUp 1s ease-out 0.2s backwards; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; color: var(--primary); letter-spacing: -2px; animation: fadeInUp 1s ease-out 0.4s backwards; }
+        .hero h1 .highlight { color: var(--accent); position: relative; display: inline-block; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--secondary); font-weight: 600; margin-bottom: 2rem; animation: fadeInUp 1s ease-out 0.6s backwards; }
+        .hero-description { font-size: 1.1rem; color: var(--text-light); line-height: 1.8; margin-bottom: 3rem; max-width: 700px; animation: fadeInUp 1s ease-out 0.8s backwards; }
+        .cta-button { display: inline-block; padding: 1rem 2.5rem; background: var(--primary); color: var(--white); text-decoration: none; font-weight: 600; border-radius: 50px; transition: all 0.3s ease; animation: fadeInUp 1s ease-out 1s backwards; box-shadow: 0 10px 30px rgba(10, 37, 64, 0.2); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(10, 37, 64, 0.3); background: var(--secondary); }
+        section { padding: 6rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--primary); margin-bottom: 1rem; letter-spacing: -1px; }
+        .section-description { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+        #about { background: var(--bg-light); }
+        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text { font-size: 1.1rem; line-height: 1.9; color: var(--text-light); }
+        .about-text strong { color: var(--primary); font-weight: 600; }
+        .about-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .stat-card { background: var(--white); padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); }
+        .stat-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.95rem; color: var(--text-light); font-weight: 500; }
+        .education-section, .languages-section { margin-top: 5rem; }
+        .subsection-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--primary); text-align: center; margin-bottom: 3rem; }
+        .education-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .education-card { background: var(--white); padding: 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); display: flex; align-items: center; gap: 2rem; transition: all 0.3s ease; border: 2px solid transparent; }
+        .education-card:hover { transform: translateX(10px); box-shadow: 0 15px 40px rgba(0, 212, 255, 0.1); border-color: var(--accent); }
+        .institution-logo { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+        .education-content { flex: 1; }
+        .degree-title { font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .institution-name { font-size: 1rem; color: var(--text-light); font-weight: 500; }
+        .badge { display: inline-block; padding: 0.25rem 0.75rem; background: var(--accent); color: var(--white); font-size: 0.75rem; font-weight: 600; border-radius: 20px; margin-left: 0.5rem; }
+        .languages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 600px; margin: 0 auto; }
+        .language-card { background: var(--white); padding: 2.5rem 2rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 2px solid transparent; }
+        .language-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15); border-color: var(--accent); }
+        .language-icon { font-size: 4rem; margin-bottom: 1rem; }
+        .language-name { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .language-level { font-size: 1rem; color: var(--text-light); font-weight: 500; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .skill-card { background: var(--white); padding: 2rem 1.5rem; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 2px solid transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 140px; }
+        .skill-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15); border-color: var(--accent); }
+        .skill-logo { width: 70px; height: 70px; object-fit: contain; margin-bottom: 1rem; }
+        .skill-name { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+        #projects { background: var(--bg-light); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .project-card { background: var(--white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer; text-decoration: none; display: block; }
+        .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 212, 255, 0.15); border-color: var(--accent); }
+        .project-header { padding: 2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .project-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 900; color: var(--primary); margin-bottom: 0.5rem; }
+        .project-objective { font-size: 1rem; color: var(--text-light); line-height: 1.6; margin-top: 1rem; }
+        .project-tools { padding: 1.5rem 2rem 2rem; }
+        .tools-label { font-size: 0.85rem; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: block; }
+        .tools-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tool-tag { padding: 0.4rem 1rem; background: var(--bg-light); color: var(--primary); font-size: 0.85rem; font-weight: 600; border-radius: 20px; border: 1px solid rgba(10, 37, 64, 0.1); }
+        #contact { background: var(--primary); color: var(--white); }
+        #contact .section-label { color: var(--accent); }
+        #contact .section-title { color: var(--white); }
+        #contact .section-description { color: rgba(255, 255, 255, 0.8); }
+        .contact-info { text-align: center; margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: center; }
+        .contact-email { display: inline-flex; align-items: center; gap: 1rem; padding: 1.5rem 3rem; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 50px; font-size: 1.3rem; color: var(--white); text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.2); }
+        .contact-email:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); border-color: var(--accent); }
+        footer { background: var(--primary); color: rgba(255, 255, 255, 0.7); text-align: center; padding: 2rem; font-size: 0.9rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        footer strong { color: var(--white); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.5rem; }
+            .subsection-title { font-size: 2rem; }
+            .about-content { grid-template-columns: 1fr; gap: 2rem; }
+            .about-stats { grid-template-columns: 1fr; }
+            .education-card { flex-direction: column; text-align: center; }
+            .institution-logo { width: 60px; height: 60px; }
+            .languages-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+            .contact-email { font-size: 1.1rem; padding: 1.2rem 2rem; }
+        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">JP</div>
+            <ul class="nav-links">
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-label">Analytics Specialist</div>
+                <h1>James <span class="highlight">Paz</span></h1>
+                <div class="hero-subtitle">Data-Driven Decision Making</div>
+                <p class="hero-description">Bachiller en Ingeniería Industrial por la Universidad de Lima, con especialización en Business Intelligence, Data Science y Arquitectura de Datos. Experiencia liderando proyectos de estrategia de datos con un enfoque end to end, integrando la perspectiva técnica y de negocio.</p>
+                <a href="#contact" class="cta-button">Conectemos</a>
+            </div>
+        </div>
+    </section>
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Sobre Mí</div>
+                <h2 class="section-title">Transformando Datos en Valor</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>Domino <strong>todo el ciclo de valor de los datos</strong>, desde la definición de necesidades y modelamiento hasta la creación de soluciones analíticas y productos de datos de impacto.</p>
+                    <p style="margin-top: 1.5rem;">Apasionado por la <strong>analítica aplicada a la gestión de personas</strong> y la toma de decisiones estratégicas, con mentalidad data driven y orientación a resultados sostenibles e innovadores.</p>
+                </div>
+                <div class="about-stats fade-in">
+                    <div class="stat-card"><div class="stat-number">E2E</div><div class="stat-label">Enfoque End to End</div></div>
+                    <div class="stat-card"><div class="stat-number">BI</div><div class="stat-label">Business Intelligence</div></div>
+                    <div class="stat-card"><div class="stat-number">DS</div><div class="stat-label">Data Science</div></div>
+                    <div class="stat-card"><div class="stat-number">DA</div><div class="stat-label">Arquitectura de Datos</div></div>
+                </div>
+            </div>
+            <div class="education-section fade-in">
+                <h3 class="subsection-title">Formación Académica</h3>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ulima-logo-color.svg/1200px-Ulima-logo-color.svg.png" alt="Universidad de Lima" class="institution-logo">
+                        <div class="education-content">
+                            <h4 class="degree-title">Bachiller en Ingeniería Industrial</h4>
+                            <p class="institution-name">Universidad de Lima</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png" alt="IBM" class="institution-logo">
+                        <div class="education-content">
+                            <h4 class="degree-title">AI Engineering <span class="badge">En Curso</span></h4>
+                            <p class="institution-name">IBM</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <img src="https://www.utec.edu.pe/sites/all/themes/utec_theme/logo.png" alt="UTEC" class="institution-logo">
+                        <div class="education-content">
+                            <h4 class="degree-title">Arquitectura de Datos</h4>
+                            <p class="institution-name">UTEC</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <img src="https://mba.upc.edu.pe/wp-content/uploads/2023/08/logo-pacifico-business-school-1.png" alt="Pacífico Business School" class="institution-logo">
+                        <div class="education-content">
+                            <h4 class="degree-title">Data Science</h4>
+                            <p class="institution-name">Pacífico Business School</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <img src="https://www.ctic.uni.edu.pe/wp-content/uploads/2022/08/logo-ctic-uni.png" alt="CTIC UNI" class="institution-logo">
+                        <div class="education-content">
+                            <h4 class="degree-title">Business Intelligence & Big Data</h4>
+                            <p class="institution-name">CTIC UNI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="languages-section fade-in">
+                <h3 class="subsection-title">Idiomas</h3>
+                <div class="languages-grid">
+                    <div class="language-card"><div class="language-icon">🇬🇧</div><h4 class="language-name">Inglés</h4><p class="language-level">Avanzado</p></div>
+                    <div class="language-card"><div class="language-icon">🇫🇷</div><h4 class="language-name">Francés</h4><p class="language-level">Básico</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Habilidades</div>
+                <h2 class="section-title">Herramientas & Tecnologías</h2>
+                <p class="section-description">Stack tecnológico completo para análisis, visualización y arquitectura de datos</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="skill-logo"><h3 class="skill-name">Power BI</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg" alt="Excel" class="skill-logo"><h3 class="skill-name">Excel</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" class="skill-logo"><h3 class="skill-name">Python</h3></div>
+                <div class="skill-card fade-in"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azuresqldatabase/azuresqldatabase-original.svg" alt="SQL" class="skill-logo"><h3 class="skill-name">SQL</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" alt="VS Code" class="skill-logo"><h3 class="skill-name">VS Code</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure" class="skill-logo"><h3 class="skill-name">Azure</h3></div>
+                <div class="skill-card fade-in"><img src="https://www.gstatic.com/analytics-suite/header/suite/v2/ic_data_studio.svg" alt="Looker Studio" class="skill-logo"><h3 class="skill-name">Looker Studio</h3></div>
+                <div class="skill-card fade-in"><img src="https://cdn.worldvectorlogo.com/logos/tableau-software.svg" alt="Tableau" class="skill-logo"><h3 class="skill-name">Tableau</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Databricks_Logo.png" alt="Databricks" class="skill-logo"><h3 class="skill-name">Databricks</h3></div>
+                <div class="skill-card fade-in"><img src="https://www.svgrepo.com/show/353658/azure-icon.svg" alt="Data Factory" class="skill-logo"><h3 class="skill-name">Data Factory</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" alt="Pandas" class="skill-logo"><h3 class="skill-name">Pandas</h3></div>
+                <div class="skill-card fade-in"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="scikit-learn" class="skill-logo"><h3 class="skill-name">Scikit-learn</h3></div>
+                <div class="skill-card fade-in"><img src="https://connectoricons-prod.azureedge.net/releases/v1.0.1664/1.0.1664.3477/powerautomate/icon.png" alt="Power Automate" class="skill-logo"><h3 class="skill-name">Power Automate</h3></div>
+                <div class="skill-card fade-in"><img src="https://connectoricons-prod.azureedge.net/releases/v1.0.1669/1.0.1669.3522/powerapps/icon.png" alt="Power Apps" class="skill-logo"><h3 class="skill-name">Power Apps</h3></div>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Portafolio</div>
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <p class="section-description">Casos de éxito en Business Intelligence y Data Analytics</p>
+            </div>
+            <div class="projects-grid">
+                <a href="projects/proyecto-dashboard-rrhh.html" class="project-card fade-in">
+                    <div class="project-header">
+                        <h3 class="project-title">Dashboard Interactivo de RRHH</h3>
+                        <p class="project-objective">Sistema de análisis integral que redujo el tiempo de generación de reportes en un 87%, permitiendo decisiones data-driven en tiempo real sobre rotación, productividad y clima laboral.</p>
+                    </div>
+                    <div class="project-tools">
+                        <span class="tools-label">Herramientas Utilizadas</span>
+                        <div class="tools-list">
+                            <span class="tool-tag">Power BI</span>
+                            <span class="tool-tag">DAX</span>
+                            <span class="tool-tag">SQL</span>
+                            <span class="tool-tag">Excel</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-label">Contacto</div>
+                <h2 class="section-title">Trabajemos Juntos</h2>
+                <p class="section-description">¿Tienes un proyecto en mente? Hablemos sobre cómo podemos crear soluciones de datos que generen impacto real</p>
+            </div>
+            <div class="contact-info fade-in">
+                <a href="mailto:james.cpv1@gmail.com" class="contact-email">📧 james.cpv1@gmail.com</a>
+                <a href="tel:+51912792574" class="contact-email">📱 (+51) 912 792 574</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2026 <strong>James Paz</strong> - Analytics Specialist. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => { observer.observe(el); });
+    </script>
+</body>
+</html>
