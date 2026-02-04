@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Recursos Humanos - James Paz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A2540;
+            --accent: #00D4FF;
+            --secondary: #1E3A5F;
+            --text-dark: #1a1a1a;
+            --text-light: #6B7280;
+            --bg-light: #F8FAFC;
+            --white: #ffffff;
+            --code-bg: #1e293b;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .back-button:hover {
+            color: var(--accent);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .project-hero {
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .meta-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 20px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .project-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        .tools-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+        .tool-badge {
+            padding: 0.6rem 1.3rem;
+            background: var(--white);
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 25px;
+            border: 2px solid var(--primary);
+            font-size: 0.9rem;
+        }
+        .content-section {
+            padding: 4rem 2rem;
+        }
+        .content-section:nth-child(even) {
+            background: var(--bg-light);
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        .content-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        .content-text strong {
+            color: var(--primary);
+        }
+        .content-list {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-list li {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+        .code-block {
+            background: var(--code-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-language {
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .copy-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .copy-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        pre {
+            margin: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        code {
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        .highlight-box h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .result-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        .result-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .result-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        footer strong {
+            color: var(--white);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="../index.html#projects" class="back-button">
+                ← Volver al Portafolio
+            </a>
+            <div class="logo">JP</div>
+        </div>
+    </nav>
+
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-meta">
+                <span class="meta-tag">Business Intelligence</span>
+                <span class="meta-tag">Enero 2025</span>
+            </div>
+            <h1>Dashboard Interactivo de Recursos Humanos</h1>
+            <p class="project-subtitle">
+                Sistema de análisis integral para la gestión estratégica del talento humano y optimización de procesos de RRHH
+            </p>
+            <div class="tools-section">
+                <span class="tool-badge">Power BI</span>
+                <span class="tool-badge">DAX</span>
+                <span class="tool-badge">Excel</span>
+                <span class="tool-badge">SQL</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">📋 Objetivo del Proyecto</h2>
+            <p class="content-text">
+                Desarrollar un dashboard ejecutivo que centralice y visualice los KPIs clave de Recursos Humanos, permitiendo la toma de decisiones data-driven en tiempo real sobre rotación, productividad, clima laboral y gestión del talento.
+            </p>
+            <div class="highlight-box">
+                <h3>Meta Principal</h3>
+                <p class="content-text" style="margin-bottom: 0;">
+                    Reducir el tiempo de generación de reportes de RRHH de 15 horas semanales a menos de 2 horas, mediante la automatización completa del proceso de análisis y visualización de datos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">🎯 Contexto y Problema</h2>
+            <p class="content-text">
+                El departamento de Recursos Humanos enfrentaba desafíos significativos en la gestión y análisis de información de sus 500+ empleados distribuidos en 5 sedes.
+            </p>
+            <ul class="content-list">
+                <li><strong>Reportes manuales:</strong> Los reportes se generaban manualmente en Excel, consumiendo 15 horas semanales del equipo de RRHH</li>
+                <li><strong>Datos dispersos:</strong> La información se encontraba en múltiples sistemas sin integración (nómina, asistencia, evaluaciones de desempeño)</li>
+                <li><strong>Falta de visibilidad:</strong> No existían alertas tempranas sobre indicadores críticos como rotación o ausentismo</li>
+                <li><strong>Decisiones reactivas:</strong> La gerencia tomaba decisiones sin acceso a métricas actualizadas, generando respuestas tardías a problemas emergentes</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">⚙️ Metodología y Proceso</h2>
+            
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">1. Recolección y Consolidación de Datos</h3>
+            <p class="content-text">
+                Se estableció un proceso ETL que integra datos de cuatro fuentes principales:
+            </p>
+            <ul class="content-list">
+                <li>Sistema de nómina (CSV mensual)</li>
+                <li>Base de datos de asistencia (SQL Server)</li>
+                <li>Evaluaciones de desempeño (Excel)</li>
+                <li>Encuestas de clima laboral (Google Forms → Excel)</li>
+            </ul>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-language">SQL</span>
+                    <button class="copy-button" onclick="copyCode(this)">Copiar código</button>
+                </div>
+                <pre><code>-- Query para consolidar datos de asistencia y calcular ausentismo
+SELECT 
+    e.empleado_id,
+    e.nombre_completo,
+    e.departamento,
+    e.sede,
+    COUNT(a.fecha) as dias_trabajados,
+    DATEDIFF(day, '2025-01-01', '2025-01-31') - COUNT(a.fecha) as dias_ausentes,
+    CAST(COUNT(a.fecha) * 100.0 / DATEDIFF(day, '2025-01-01', '2025-01-31') AS DECIMAL(5,2)) as tasa_asistencia
+FROM empleados e
+LEFT JOIN asistencia a ON e.empleado_id = a.empleado_id
+    AND a.fecha BETWEEN '2025-01-01' AND '2025-01-31'
+WHERE e.estado = 'ACTIVO'
+GROUP BY e.empleado_id, e.nombre_completo, e.departamento, e.sede
+ORDER BY tasa_asistencia ASC;</code></pre>
+            </div>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">2. Modelado de Datos en Power BI</h3>
+            <p class="content-text">
+                Se diseñó un modelo de datos tipo estrella con las siguientes tablas:
+            </p>
+            <ul class="content-list">
+                <li><strong>Dimensión Empleados:</strong> Información demográfica, departamento, nivel jerárquico</li>
+                <li><strong>Dimensión Tiempo:</strong> Calendario fiscal con jerarquías (año, trimestre, mes, semana)</li>
+                <li><strong>Hecho Asistencia:</strong> Registro diario de asistencia y ausentismo</li>
+                <li><strong>Hecho Evaluación:</strong> Resultados de evaluaciones de desempeño</li>
+                <li><strong>Hecho Rotación:</strong> Altas y bajas de personal</li>
+            </ul>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">3. Creación de Métricas con DAX</h3>
+            <p class="content-text">
+                Se desarrollaron medidas DAX avanzadas para calcular KPIs complejos:
+            </p>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-language">DAX</span>
+                    <button class="copy-button" onclick="copyCode(this)">Copiar código</button>
+                </div>
+                <pre><code>// Tasa de Rotación Mensual
+Tasa_Rotacion = 
+VAR Bajas = CALCULATE(
+    COUNTROWS(Rotacion),
+    Rotacion[Tipo] = "Baja"
+)
+VAR EmpleadosPromedio = 
+    DIVIDE(
+        CALCULATE(COUNTROWS(Empleados), Empleados[Estado] = "ACTIVO", PREVIOUSMONTH(Calendario[Fecha])) +
+        CALCULATE(COUNTROWS(Empleados), Empleados[Estado] = "ACTIVO"),
+        2
+    )
+RETURN
+    DIVIDE(Bajas, EmpleadosPromedio, 0) * 100
+
+// Índice de Satisfacción Laboral (eNPS)
+eNPS = 
+VAR Promotores = CALCULATE(
+    COUNTROWS(EncuestaClima),
+    EncuestaClima[Puntuacion] >= 9
+)
+VAR Detractores = CALCULATE(
+    COUNTROWS(EncuestaClima),
+    EncuestaClima[Puntuacion] <= 6
+)
+VAR TotalRespuestas = COUNTROWS(EncuestaClima)
+RETURN
+    DIVIDE(Promotores - Detractores, TotalRespuestas, 0) * 100</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">📊 Estructura del Dashboard</h2>
+            <p class="content-text">
+                El dashboard se estructuró en 4 páginas principales, cada una enfocada en un área clave:
+            </p>
+            
+            <div class="image-container">
+                <img src="imagenes/dashboard-rrhh/analisis-rotacion.png" alt="Dashboard principal">
+            </div>
+            <p class="image-caption">Figura 1: Dashboard principal de ventas</p>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">Página 1: Vista Ejecutiva</h3>
+            <p class="content-text">
+                Panel de control con los KPIs más relevantes para la gerencia general. Incluye comparativas con períodos anteriores y alertas automáticas sobre métricas fuera de rango.
+            </p>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">Página 2: Análisis de Rotación</h3>
+            <p class="content-text">
+                Visualizaciones detalladas de rotación por departamento, motivos de salida, análisis de tendencias y predicción de riesgo de fuga utilizando scoring de empleados.
+            </p>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">Página 3: Productividad y Desempeño</h3>
+            <p class="content-text">
+                Matriz de evaluación 9-box, distribución de calificaciones, identificación de high-performers y empleados en riesgo. Cruce con asistencia y antigüedad.
+            </p>
+
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin: 2rem 0 1rem;">Página 4: Clima Laboral</h3>
+            <p class="content-text">
+                Resultados de encuestas de clima organizacional, eNPS por departamento, evolución temporal del compromiso y análisis de comentarios abiertos con word cloud.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">🎉 Resultados e Impacto</h2>
+            <p class="content-text">
+                La implementación del dashboard generó beneficios tangibles e inmediatos en la operación del área de RRHH:
+            </p>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">87%</div>
+                    <div class="result-label">Reducción en Tiempo de Reportes</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">13hrs</div>
+                    <div class="result-label">Ahorro Semanal</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">100%</div>
+                    <div class="result-label">Visibilidad en Tiempo Real</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">-22%</div>
+                    <div class="result-label">Reducción en Rotación</div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Impacto Estratégico</h3>
+                <p class="content-text" style="margin-bottom: 0;">
+                    El dashboard permitió identificar que el 68% de la rotación ocurría en los primeros 6 meses. Con esta información, RRHH rediseñó el programa de onboarding, logrando reducir la rotación temprana en un 35% en el siguiente trimestre.
+                </p>
+            </div>
+
+            <ul class="content-list">
+                <li><strong>Automatización completa:</strong> Los reportes semanales y mensuales se generan automáticamente con un solo clic</li>
+                <li><strong>Alertas proactivas:</strong> Notificaciones automáticas cuando métricas clave superan umbrales definidos</li>
+                <li><strong>Decisiones basadas en datos:</strong> La gerencia puede explorar datos interactivamente sin depender del área de RRHH</li>
+                <li><strong>ROI medible:</strong> El tiempo ahorrado se reinvirtió en iniciativas estratégicas de desarrollo de talento</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">💡 Aprendizajes y Conclusiones</h2>
+            <ul class="content-list">
+                <li><strong>Importancia del diseño centrado en el usuario:</strong> Realizar sesiones de co-creación con los stakeholders fue clave para asegurar que el dashboard respondiera a necesidades reales y no solo fuera técnicamente sólido</li>
+                <li><strong>Calidad de datos es fundamental:</strong> El 40% del tiempo del proyecto se invirtió en limpieza y estandarización de datos. Sin esta base, las visualizaciones carecerían de valor</li>
+                <li><strong>Documentación exhaustiva:</strong> Crear documentación detallada de las métricas DAX facilitó el mantenimiento y la transferencia de conocimiento al equipo interno</li>
+                <li><strong>Iteración constante:</strong> El dashboard evolucionó a través de 3 versiones basadas en feedback de usuarios, mejorando progresivamente la experiencia</li>
+            </ul>
+            
+            <p class="content-text">
+                Este proyecto demostró que la transformación digital en RRHH va más allá de implementar tecnología. Requiere un enfoque estratégico que combine análisis de datos, diseño de experiencia de usuario y gestión del cambio organizacional. El éxito se mide no solo en horas ahorradas, sino en la capacidad de tomar decisiones más inteligentes que impacten positivamente en el talento humano de la organización.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 <strong>James Paz</strong> - Analytics Specialist. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = '✓ Copiado';
+                setTimeout(() => {
+                    button.textContent = 'Copiar código';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
