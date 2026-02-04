@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: [NOMBRE] - James Paz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #0A2540; --accent: #00D4FF; --secondary: #1E3A5F; --text-dark: #1a1a1a; --text-light: #6B7280; --bg-light: #F8FAFC; --white: #ffffff; --code-bg: #1e293b; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Work Sans', sans-serif; color: var(--text-dark); line-height: 1.6; background: var(--white); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1.5rem 2rem; border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .back-button { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--primary); font-weight: 600; transition: color 0.3s ease; }
+        .back-button:hover { color: var(--accent); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--primary); }
+        .project-hero { padding: 8rem 2rem 4rem; background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%); }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .project-meta { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .meta-tag { padding: 0.5rem 1.2rem; background: var(--primary); color: var(--white); font-size: 0.85rem; font-weight: 600; border-radius: 20px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: var(--primary); margin-bottom: 1.5rem; line-height: 1.2; }
+        .project-subtitle { font-size: 1.3rem; color: var(--text-light); margin-bottom: 2rem; }
+        .tools-section { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+        .tool-badge { padding: 0.6rem 1.3rem; background: var(--white); color: var(--primary); font-weight: 600; border-radius: 25px; border: 2px solid var(--primary); font-size: 0.9rem; }
+        .content-section { padding: 4rem 2rem; }
+        .content-section:nth-child(even) { background: var(--bg-light); }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--primary); margin-bottom: 2rem; }
+        .content-text { font-size: 1.1rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem; }
+        .content-text strong { color: var(--primary); }
+        .content-list { margin-left: 2rem; margin-bottom: 1.5rem; }
+        .content-list li { font-size: 1.1rem; color: var(--text-light); margin-bottom: 0.75rem; }
+        .image-container { margin: 2rem 0; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); }
+        .image-container img { width: 100%; display: block; }
+        .image-caption { text-align: center; font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; font-style: italic; }
+        .code-block { background: var(--code-bg); border-radius: 15px; padding: 2rem; margin: 2rem 0; overflow-x: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); }
+        .code-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .code-language { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 600; }
+        .copy-button { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--white); padding: 0.4rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: all 0.3s ease; }
+        .copy-button:hover { background: rgba(255, 255, 255, 0.2); }
+        pre { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; line-height: 1.6; }
+        code { color: #e2e8f0; font-family: 'JetBrains Mono', monospace; }
+        .highlight-box { background: rgba(0, 212, 255, 0.05); border-left: 4px solid var(--accent); padding: 1.5rem; margin: 2rem 0; border-radius: 8px; }
+        .highlight-box h3 { color: var(--primary); font-size: 1.3rem; margin-bottom: 1rem; }
+        .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .result-card { background: var(--white); padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); text-align: center; }
+        .result-number { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--accent); margin-bottom: 0.5rem; }
+        .result-label { color: var(--text-light); font-weight: 600; }
+        footer { background: var(--primary); color: rgba(255, 255, 255, 0.7); text-align: center; padding: 2rem; font-size: 0.9rem; }
+        footer strong { color: var(--white); }
+        @media (max-width: 768px) { h1 { font-size: 2.5rem; } .section-title { font-size: 2rem; } .results-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav><div class="container"><a href="../portfolio-james-paz.html#projects" class="back-button">← Volver</a><div class="logo">JP</div></div></nav>
+    <section class="project-hero"><div class="container"><div class="project-meta"><span class="meta-tag">[Categoría]</span><span class="meta-tag">[Fecha]</span></div><h1>[TÍTULO DEL PROYECTO]</h1><p class="project-subtitle">[Descripción breve]</p><div class="tools-section"><span class="tool-badge">Power BI</span><span class="tool-badge">Python</span></div></div></section>
+    <section class="content-section"><div class="container"><h2 class="section-title">📋 Objetivo</h2><p class="content-text">[Objetivo del proyecto]</p><div class="highlight-box"><h3>Meta</h3><p class="content-text" style="margin-bottom: 0;">[Meta principal]</p></div></div></section>
+    <section class="content-section"><div class="container"><h2 class="section-title">⚙️ Metodología</h2><p class="content-text">[Describe tu proceso]</p></div></section>
+    <section class="content-section"><div class="container"><h2 class="section-title">📊 Resultados</h2><div class="results-grid"><div class="result-card"><div class="result-number">+X%</div><div class="result-label">Métrica</div></div></div></div></section>
+    <footer><p>&copy; 2026 <strong>James Paz</strong> - Analytics Specialist</p></footer>
+    <script>function copyCode(b){const c=b.closest('.code-block').querySelector('code').textContent;navigator.clipboard.writeText(c).then(()=>{b.textContent='✓ Copiado';setTimeout(()=>{b.textContent='Copiar código'},2000)})}</script>
+</body>
+</html>
